@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= player.name %> - Detail</title>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/detail.css">
+</head>
+
+<body>
+    <div class="container">
+        <%- include('partials/nav') %>
+        <div class="detail-card">
+            <div class="detail-header-bar">
+                <a href="/players" class="back-button">< Terug naar overzicht</a>
+            </div>
+
+            <div class="detail-body">
+                <div class="detail-avatar">
+                    <img src="<%= player.imageUrl %>" alt="<%= player.name %>">
+                    <h1><%= player.name %></h1>
+                    <span class="position-tag"><%= player.position %></span>
+                </div>
+
+                <div class="detail-info">
+                    <div class="info-row">
+                        <span class="label">ID</span>
+                        <span class="value"><%= player.id %></span>
+                    </div>
+                    <div class="info-row description-row">
+                        <span class="label">Beschrijving</span>
+                        <span class="value description-value"><%= player.description %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Leeftijd</span>
+                        <span class="value"><%= player.age %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Geboortedatum</span>
+                        <span class="value"><%= player.birthDate %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Actief</span>
+                        <span class="value"><%= player.isActive ? 'Ja' : 'Nee' %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Hobby's</span>
+                        <span class="value"><%= player.hobbies.join(", ") %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Club</span>
+                        <span class="value">
+                            <% if (player.teamId) { %>
+                                <a href="/teams/<%= player.teamId %>"><%= player.team?.name || 'N/A' %></a>
+                            <% } else { %>
+                                <%= player.team?.name || 'N/A' %>
+                            <% } %>
+                        </span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Land</span>
+                        <span class="value"><%= player.team?.country || 'N/A' %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Competitie</span>
+                        <span class="value"><%= player.team?.league || 'N/A' %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Stadion</span>
+                        <span class="value"><%= player.team?.stadium || 'N/A' %></span>
+                    </div>
+                </div>
+
+                <% if (user && user.role === 'ADMIN') { %>
+                    <a href="/players/<%= player._id %>/edit" class="edit-button">Speler bewerken</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

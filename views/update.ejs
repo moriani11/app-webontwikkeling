@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bewerk <%= player.name %></title>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/nav') %>
+        <div class="edit-card">
+            <form class="edit-form" method="POST" action="/players/<%= player._id %>/edit">
+                <a href="/players/<%= player._id %>" class="back-button">< Terug</a>
+                <h1>Bewerk <%= player.name %></h1>
+
+                <label>Naam</label>
+                <input type="text" name="name" value="<%= player.name %>" required>
+
+                <label>Geboortedatum</label>
+                <input type="date" name="birthDate" value="<%= player.birthDate %>">
+
+                <label>Positie</label>
+                <select name="position">
+                    <option value="Forward" <%= player.position === 'Forward' ? 'selected' : '' %>>Aanvaller</option>
+                    <option value="Midfielder" <%= player.position === 'Midfielder' ? 'selected' : '' %>>Middenvelder</option>
+                    <option value="Defender" <%= player.position === 'Defender' ? 'selected' : '' %>>Verdediger</option>
+                    <option value="Goalkeeper" <%= player.position === 'Goalkeeper' ? 'selected' : '' %>>Doelman</option>
+                </select>
+
+                <label>Afbeelding URL</label>
+                <input type="text" name="imageUrl" value="<%= player.imageUrl %>">
+
+                <button type="submit">Wijzigingen opslaan</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelers</title>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/nav') %>
+
+        <form class="search-bar" method="">
+            <input type="text" name="search" placeholder="Zoek een speler..." value="<%= search %>">
+            <button type="submit">Zoeken</button>
+        </form>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th><span class="sort-links"><a href="?sort=name&order=asc">Naam ↑</a><a href="?sort=name&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=age&order=asc">Leeftijd ↑</a><a href="?sort=age&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=position&order=asc">Positie ↑</a><a href="?sort=position&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=club&order=asc">Club ↑</a><a href="?sort=club&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=competitie&order=asc">Competitie ↑</a><a href="?sort=competitie&order=desc">↓</a></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (const player of players) { %>
+                        <tr>
+                            <td>
+                                <a href="/players/<%= player._id %>">
+                                    <img src="<%= player.imageUrl %>">
+                                    <%= player.name %>
+                                </a>
+                            </td>
+                            <td><%= player.age %></td>
+                            <td><%= player.position %></td>
+                            <td><%= player.team?.name %></td>
+                            <td><%= player.team?.league %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teams</title>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/nav') %>
+
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Logo</th>
+                        <th><span class="sort-links"><a href="?sort=name&order=asc">Naam ↑</a><a href="?sort=name&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=country&order=asc">Land ↑</a><a href="?sort=country&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=league&order=asc">Competitie ↑</a><a href="?sort=league&order=desc">↓</a></span></th>
+                        <th><span class="sort-links"><a href="?sort=stadium&order=asc">Stadion ↑</a><a href="?sort=stadium&order=desc">↓</a></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (const team of teams) { %>
+                        <tr>
+                            <td><img src="<%= team.logoUrl %>" alt="<%= team.name %>"></td>
+                            <td><a href="/teams/<%= team._id %>"><%= team.name %></a></td>
+                            <td><%= team.country %></td>
+                            <td><%= team.league %></td>
+                            <td><%= team.stadium %></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

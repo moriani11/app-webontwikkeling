@@ -1,0 +1,94 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid darkkhaki;
+}
+
+.nav-brand a {
+    font-size: 1.6rem;
+    color: #2c3e50;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-brand a:hover {
+    color: darkkhaki;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 6px 12px;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background-color: darkkhaki;
+    color: #333;
+}
+
+.logout-form button {
+    padding: 8px 18px;
+    border: none;
+    background-color: #d9534f;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.logout-form button:hover {
+    background-color: #c9302c;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-brand a {
+        font-size: 1.4rem;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-bottom: 10px;
+    }
+
+    .nav-brand a {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+    }
+
+    .logout-form button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}

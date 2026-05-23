@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= team.name %> - Team</title>
+    <link rel="stylesheet" href="/nav.css">
+    <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+    <div class="container">
+        <%- include('partials/nav') %>
+        <div class="detail-card">
+            <div class="detail-header-bar">
+                <a href="/teams" class="back-button">< Terug naar teams</a>
+            </div>
+
+            <div class="detail-body">
+                <div class="detail-avatar">
+                    <img src="<%= team.logoUrl %>" alt="<%= team.name %>">
+                    <h1><%= team.name %></h1>
+                    <span class="position-tag"><%= team.country %></span>
+                </div>
+
+                <div class="detail-info">
+                    <div class="info-row">
+                        <span class="label">ID</span>
+                        <span class="value"><%= team.id %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Naam</span>
+                        <span class="value"><%= team.name %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Land</span>
+                        <span class="value"><%= team.country %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Competitie</span>
+                        <span class="value"><%= team.league %></span>
+                    </div>
+                    <div class="info-row">
+                        <span class="label">Stadion</span>
+                        <span class="value"><%= team.stadium %></span>
+                    </div>
+                </div>
+
+                <h2 class="team-players-title">Spelers</h2>
+                <div class="team-players-section">
+                    <% if (players.length === 0) { %>
+                        <p>Geen spelers gevonden voor dit team.</p>
+                    <% } else { %>
+                        <ul class="team-players-list">
+                            <% for (const player of players) { %>
+                                <li class="team-player-item">
+                                    <a href="/players/<%= player._id %>" class="team-player-link">
+                                        <img src="<%= player.imageUrl %>" class="team-player-avatar" alt="<%= player.name %>">
+                                        <%= player.name %>
+                                    </a>
+                                </li>
+                            <% } %>
+                        </ul>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

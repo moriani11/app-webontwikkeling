@@ -1,3 +1,16 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --accent: #c9a961;
+    --accent-dark: #a88a3f;
+    --accent-light: #f5edd3;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --border-light: #e2e8f0;
+    --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.12);
+    --shadow-hover: 0 20px 60px rgba(15, 23, 42, 0.25);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -5,14 +18,29 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef1f5;
-    color: #333;
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(201, 169, 97, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.1) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 30px 40px;
+    padding: 30px 30px 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .detail-card,
@@ -24,33 +52,45 @@ body {
 /* Detail Page */
 .detail-card {
     width: 100%;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     overflow: hidden;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .detail-header-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 30px;
-    background-color: darkkhaki;
+    padding: 20px 32px;
+    background: linear-gradient(135deg, var(--text-dark) 0%, #334155 100%);
 }
 
 .back-button {
-    color: #333;
-    font-weight: 700;
+    color: var(--accent-light);
+    font-weight: 600;
     text-decoration: none;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
     gap: 6px;
-    transition: color 0.2s;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.25s ease;
 }
 
 .back-button:hover {
-    color: #555;
+    background: rgba(201, 169, 97, 0.2);
+    color: var(--accent);
+    transform: translateX(-3px);
 }
 
 .logout-form button {
@@ -84,29 +124,40 @@ body {
 }
 
 .detail-avatar img {
-    width: 180px;
-    height: 180px;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    border: 6px solid darkkhaki;
+    border: 6px solid var(--accent);
     margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.4);
+    transition: transform 0.4s ease;
+}
+
+.detail-avatar img:hover {
+    transform: scale(1.05) rotate(2deg);
 }
 
 .detail-avatar h1 {
     margin: 0;
-    font-size: 1.6rem;
-    color: #2c3e50;
+    font-size: 1.7rem;
+    color: var(--text-dark);
     text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
 .detail-avatar .position-tag {
-    margin-top: 8px;
-    padding: 4px 14px;
-    background: #f1f1d8;
+    margin-top: 10px;
+    padding: 6px 18px;
+    background: linear-gradient(135deg, var(--accent-light) 0%, #fff8e0 100%);
     border-radius: 20px;
     font-size: 0.85rem;
-    color: #555;
-    font-weight: 600;
+    color: var(--accent-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.2);
 }
 
 .detail-info {
@@ -120,17 +171,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 14px 20px;
-    background: #f9f9f9;
-    border-radius: 10px;
+    padding: 16px 22px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    border-left: 3px solid var(--accent);
+    transition: all 0.25s ease;
+}
+
+.info-row:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 .info-row .label {
     font-weight: 700;
-    color: #777;
-    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
 .description-value {
@@ -143,37 +201,42 @@ body {
 
 .info-row .value {
     font-weight: 600;
-    color: #2c3e50;
+    color: var(--text-dark);
     font-size: 1rem;
 }
 
 .edit-button {
     grid-column: 1 / -1;
     display: inline-block;
-    padding: 12px 28px;
-    background: darkkhaki;
-    color: #333;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 700;
-    margin-top: 10px;
+    margin-top: 14px;
     text-align: center;
-    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+    transition: all 0.3s ease;
 }
 
 .edit-button:hover {
-    background: #bdb76b;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5);
 }
 
 /* Edit Page */
 .edit-card {
     width: 100%;
     max-width: 520px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 40px;
+    animation: fadeInUp 0.6s ease;
 }
 
 .edit-card .logout-form {
@@ -201,36 +264,41 @@ body {
 .edit-form input,
 .edit-form select {
     width: 100%;
-    padding: 12px 14px;
+    padding: 13px 16px;
     margin-bottom: 22px;
-    border: 2px solid #e0e0e0;
-    border-radius: 10px;
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
     font-size: 1rem;
-    transition: border-color 0.2s;
+    background: #fafbfc;
+    transition: all 0.25s ease;
 }
 
 .edit-form input:focus,
 .edit-form select:focus {
     outline: none;
-    border-color: darkkhaki;
+    border-color: var(--accent);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(201, 169, 97, 0.15);
 }
 
 .edit-form button[type="submit"] {
     width: 100%;
-    padding: 14px;
-    background: darkkhaki;
-    color: #333;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
+    letter-spacing: 0.5px;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 15px rgba(201, 169, 97, 0.4);
+    transition: all 0.3s ease;
 }
 
 .edit-form button[type="submit"]:hover {
-    background: #bdb76b;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(201, 169, 97, 0.5);
 }
 
 /* Team Players Section */
@@ -253,30 +321,39 @@ body {
 }
 
 .team-player-item {
-    padding: 12px 16px;
-    background: #f9f9f9;
-    border-radius: 10px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 12px;
+    border-left: 3px solid transparent;
+    transition: all 0.25s ease;
+}
+
+.team-player-item:hover {
+    border-left-color: var(--accent);
+    transform: translateX(6px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
 
 .team-player-link {
     display: flex;
     align-items: center;
-    gap: 12px;
-    color: #2c3e50;
+    gap: 14px;
+    color: var(--text-dark);
     text-decoration: none;
     font-weight: 600;
 }
 
 .team-player-link:hover {
-    color: darkkhaki;
+    color: var(--accent-dark);
 }
 
 .team-player-avatar {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid darkkhaki;
+    border: 2px solid var(--accent);
+    box-shadow: 0 2px 8px rgba(201, 169, 97, 0.3);
 }
 
 /* ========== RESPONSIVE ========== */

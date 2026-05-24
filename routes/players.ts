@@ -11,7 +11,7 @@ router.use(secureMiddleware);
 function getSortValue(player: any, field: string): string {
   switch (field) {
     case "name": return player.name || "";
-    case "age": return String(player.age || 0).padStart(3, "0");
+    case "age": return String(player.age || 0);
     case "birthDate": return player.birthDate || "";
     case "position": return player.position || "";
     case "hobbies": return (player.hobbies || []).join(", ");

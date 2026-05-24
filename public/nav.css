@@ -2,57 +2,79 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid darkkhaki;
+    margin-bottom: 30px;
+    padding: 16px 28px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.15);
+    animation: navSlide 0.5s ease;
+}
+
+@keyframes navSlide {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .nav-brand a {
     font-size: 1.6rem;
-    color: #2c3e50;
-    font-weight: 700;
+    color: #1e293b;
+    font-weight: 800;
     text-decoration: none;
+    letter-spacing: -0.3px;
+    background: linear-gradient(135deg, #1e293b 0%, #c9a961 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity 0.25s;
 }
 
 .nav-brand a:hover {
-    color: darkkhaki;
+    opacity: 0.8;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .nav-link {
-    color: #2c3e50;
+    color: #1e293b;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background 0.2s, color 0.2s;
+    font-size: 0.95rem;
+    padding: 9px 18px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
 .nav-link:hover {
-    background-color: darkkhaki;
-    color: #333;
+    background: linear-gradient(135deg, #c9a961 0%, #a88a3f 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
 }
 
 .logout-form button {
-    padding: 8px 18px;
+    padding: 9px 20px;
     border: none;
-    background-color: #d9534f;
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: background 0.2s;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    transition: all 0.25s ease;
 }
 
 .logout-form button:hover {
-    background-color: #c9302c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.45);
 }
 
 @media (max-width: 768px) {
